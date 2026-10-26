@@ -64,6 +64,8 @@ def filter_product(request):
     serializer = ProductSerializer(products, many=True)
     return Response(serializer.data)
 
+
+# 
 class creat_cart(generics.CreateAPIView):
     serializer_class = CartSerializers
     permission_classes = [permissions.IsAuthenticated]
@@ -124,12 +126,15 @@ class Ordercreat(generics.CreateAPIView):
         return Order.objects.filter(user=self.request.user)
     
     
+    
 class OrderDetailView(generics.RetrieveAPIView):
     serializer_class = OrderSerializer
     permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
         return Order.objects.filter(user=self.request.user)
+    
+    
     
 class OrderlistView(generics.ListAPIView):
     serializer_class = OrderSerializer
@@ -138,12 +143,16 @@ class OrderlistView(generics.ListAPIView):
     def get_queryset(self):
         return Order.objects.filter(user=self.request.user)
 
+
+
 class OrderdeletView(generics.DestroyAPIView):
     serializer_class = OrderSerializer
     permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
         return Order.objects.filter(user=self.request.user)
+
+
 
 class OrderStatusUpdateView(generics.UpdateAPIView):
     queryset = Order.objects.all()
