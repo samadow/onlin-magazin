@@ -14,6 +14,7 @@ class RegisterView(generics.CreateAPIView):
     permission_classes = [permissions.AllowAny]
 
 
+
 class LogoutView(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
